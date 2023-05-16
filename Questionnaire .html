@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <form action="http://localhost/comp3700sp20/Questions.php" method="post" > 
+      <h1>Feedback Form</h1>
+      <p>Please take a moment to complete this short survey.</p>
+      
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" min="0" max="200" required>
+      
+      <label>How often do you visit our website?</label>
+      <br>
+      <input type="radio" id="daily" name="visit-frequency" value="daily">
+      <label for="daily">Daily</label>
+      <br>
+      <input type="radio" id="weekly" name="visit-frequency" value="weekly">
+      <label for="weekly">Weekly</label>
+      <br>
+      <input type="radio" id="monthly" name="visit-frequency" value="monthly">
+      <label for="monthly">Monthly</label>
+      <br>
+      <input type="radio" id="never" name="visit-frequency" value="never">
+      <label for="never">Never</label>
+      
+      <label>What do you like most about our website?</label>
+      <br>
+      <textarea id="like-most" name="like-most" rows="5"></textarea>
+      
+      <label>What do you think we can improve on?</label>
+      <br>
+      <textarea id="improve-on" name="improve-on" rows="5"></textarea>
+      
+      <label for="subscribe">Subscribe to our newsletter:</label>
+      <input type="checkbox" id="subscribe" name="subscribe" value="yes">
+      
+      <button type="submit" onclick="submitForm()">Submit</button>
+    </form>
+    
+    <script>
+     function submitForm() {
+  // Get the form inputs
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const ageInput = document.getElementById('age');
+  const visitFrequencyInput = document.querySelector('input[name="visit-frequency"]:checked');
+  const likeMostInput = document.getElementById('like-most');
+  const improveOnInput = document.getElementById('improve-on');
+  const subscribeInput = document.getElementById('subscribe');
+
+  // Check if any of the required fields are empty
+  const requiredInputs = [nameInput, emailInput, ageInput, visitFrequencyInput, likeMostInput, improveOnInput];
+  for (const input of requiredInputs) {
+    if (input.value.trim() === '') {
+      alert('Please fill in all required fields.');
+      input.focus();
+      return false;
+    }
+  }
+
+  // Check if email is correct
+  if (emailInput.value.search('@') === -1) {
+    alert('Please enter a valid email address.');
+    emailInput.focus();
+    return false;
+  }
+
+  // Check if age is in valid range
+  const ageValue = parseInt(ageInput.value);
+  if (isNaN(ageValue) || ageValue < 18 || ageValue > 120) {
+    alert('Please enter a valid age between 18 and 120.');
+    ageInput.focus();
+    return false;
+  }
+
+  // Return true if all checks pass
+  return true;
+}
+
+    </script>
+  </body>
+</html>

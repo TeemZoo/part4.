@@ -1,0 +1,92 @@
+-- Database: regdb
+
+
+-- Database: regdb
+
+-- Table structure for table visitor
+CREATE TABLE visitor (
+  ID int(6) NOT NULL,
+  Name varchar(30) NOT NULL,
+  Age int(2) NOT NULL
+);
+
+-- Dumping data for table visitor
+INSERT INTO visitor (ID, Name, Age) VALUES
+(12345, 'Ahmed', 12),
+(11223, 'Kaled', 18),
+(34251, 'Mariam', 25),
+(23234, 'Abdulaziz', 30),
+(12934, 'Abdulah', 30),
+(12332, 'Abdulaziz', 45),
+(12234, 'Nure', 65),
+(32322, 'Majed', 13),
+(12564, 'Salim', 71);
+
+
+-- Table structure for table Worker
+CREATE TABLE Worker (
+  ID int(3) NOT NULL,
+  Name varchar(30) NOT NULL,
+  specialty varchar(15) DEFAULT NULL,
+  degree varchar(4) DEFAULT NULL,
+  Gender char(1) DEFAULT NULL
+);
+
+-- Dumping data for table Worker
+INSERT INTO Worker (ID, Name, specialty, degree, Gender) VALUES
+(100, 'Mahmood', 'Zoo Management', 'B.S', 'M'),
+(110, 'Abdulaziz', 'Wildlife Rehabilitation Therapy', 'M.A', 'M'),
+(111, 'Nure', 'Wildlife Biology', 'Dip', 'F'),
+(201, 'Malik', 'Veterinary Medicine', 'Ph.D', 'M'),
+(210, 'Malik', 'Zoo Management', 'M.A', 'M'),
+(211, 'Amjed', 'Wildlife Rehabilitation Therapy', 'Ph.D', 'M'),
+(202, 'Ali', 'Wildlife Biology', 'B.S', 'M'),
+(200, 'Husam', 'Veterinary Medicine', 'Dip', 'M');
+
+CREATE TABLE animals (
+  animal_id int(8) NOT NULL,
+  species varchar(50) NOT NULL,
+  name varchar(50) NOT NULL,
+  gender char(1) NOT NULL,
+  birthdate date DEFAULT NULL,
+  habitat varchar(50) DEFAULT NULL,
+  diet varchar(50) DEFAULT NULL
+);
+
+-- Dumping data for table animals
+INSERT INTO animals (animal_id, species, name, gender, birthdate, habitat, diet) VALUES
+(1, 'Lion', 'Simba', 'M', '2015-06-12', 'Savannah', 'Meat'),
+(2, 'Giraffe', 'Gerald', 'M', '2017-04-05', 'Savannah', 'Leaves'),
+(3, 'Elephant', 'Ellie', 'F', '2013-09-23', 'Forest', 'Fruits and Vegetables'),
+(4, 'Zebra', 'Ziggy', 'M', '2016-11-01', 'Savannah', 'Grass'),
+(5, 'Panda', 'Po', 'M', '2018-02-10', 'Forest', 'Bamboo'),
+(6, 'Tiger', 'Tony', 'M', '2014-08-15', 'Jungle', 'Meat'),
+(7, 'Kangaroo', 'Kathy', 'F', '2019-05-03', 'Outback', 'Grass and Leaves'),
+(8, 'Gorilla', 'George', 'M', '2012-12-18', 'Jungle', 'Fruits'),
+(9, 'Hippopotamus', 'Hank', 'M', '2015-03-22', 'River', 'Grass'),
+(10, 'Crocodile', 'Cleo', 'F', '2017-09-17', 'River', 'Fish'),
+(11, 'Penguin', 'Penny', 'F', '2019-01-06', 'Antarctica', 'Fish and Krill'),
+(12, 'Koala', 'Kiki', 'F', '2016-07-08', 'Eucalyptus Forest', 'Eucalyptus Leaves');
+
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table visitor
+--
+ALTER TABLE visitor
+  ADD PRIMARY KEY (ID);
+--
+-- Indexes for table Worker
+--
+ALTER TABLE Worker
+  ADD PRIMARY KEY (ID);
+
+--
+-- Indexes for table animals
+--
+ALTER TABLE animals
+  ADD PRIMARY KEY (animal_id);
+COMMIT;

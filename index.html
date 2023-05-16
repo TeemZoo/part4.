@@ -1,0 +1,115 @@
+<html>
+    <head>
+
+    </head>
+    <style>
+        .photo-gallery {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+      
+        .photo-gallery img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+      
+        .photo-gallery img {
+            opacity: 1;
+        }
+    </style>
+    
+    <body style="background-color: rgb(125, 231, 125);">
+        <div class="text-banner">
+            <marquee direction="left">Welcome to the Zoo Time website! Today is <span id="current-date"></span>, and the time is <span id="current-time"></span></marquee>
+          </div>
+          
+          <script>
+            // Update the current date and time in the text-banner
+            setInterval(function() {
+              var now = new Date();
+              document.getElementById("current-date").innerHTML = now.toLocaleDateString();
+              document.getElementById("current-time").innerHTML = now.toLocaleTimeString();
+            }, 1000);
+          </script>
+          
+          <style>
+            .text-banner {
+              background-color: #003366;
+              color: white;
+              padding: 10px;
+              position: fixed;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+            }
+          
+            marquee {
+              font-size: 1.2em;
+              font-weight: bold;
+            }
+          </style>
+
+<h2>Photo Gallery</h2>
+
+<div class="photo-gallery">
+  <img src="logo.jpg">
+  <img src="zoo1.jpg">
+  <img src="zoo2.jpg">
+  <img src="zoo3.jpg">
+  <img src="zoo4.jpg">
+  <img src="zoo5.jpg">
+  <img src="zoo6.jpg">
+</div> 
+<div style="display: flex;">
+  <div style="flex: 1;">
+    <h1>Part3</h1>
+    <a href="index.html" style="color: black;">Home</a>
+    <p></p>
+    <a href="Updattable.html" style="color: black;">Updattable</a>
+    <p></p>
+    <a href="Questionnaire .html" style="color: black;">Questionnaire</a>
+    <p></p>
+    <a href="Calculation Page.html" style="color: black;">Calculation Page</a>
+    <p></p>
+    <a href="funpage.html" style="color: black;">funpage</a>
+  </div>
+</div>
+
+
+<script>
+  var photoIndex = 0;
+  var photos = document.querySelectorAll(".photo-gallery img");
+
+  // Show the first photo and start the rotation timer
+  showPhoto();
+  setInterval(nextPhoto, 3000);
+
+  function showPhoto() {
+    // Hide all photos except the current one
+    for (var i = 0; i < photos.length; i++) {
+      if (i === photoIndex) {
+        photos[i].style.display = "block";
+      } else {
+        photos[i].style.display = "none";
+      }
+    }
+  }
+
+  function nextPhoto() {
+    // Increment the photo index and wrap around to 0 when reaching the end
+    photoIndex++;
+    if (photoIndex >= photos.length) {
+      photoIndex = 0;
+    }
+    showPhoto();
+  }
+</script>
+          
+    </body>
+</html>

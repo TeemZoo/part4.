@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Zoo Guessing Game</title>
+	<style>
+		img {
+			width: 300px;
+			height: auto;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body style="background-color: aquamarine;">
+	<h1>Zoo Guessing Game</h1>
+	<p>Can you guess the name of this animal?</p>
+	<img id="animal-pic" src="https://via.placeholder.com/300x200" alt="animal picture">
+	<p id="clues"></p>
+	<form onsubmit="checkGuess(); return false;">
+		<label for="guess">Enter your guess:</label>
+		<input type="text" id="guess" name="guess">
+		<button type="submit">Check</button>
+	</form>
+	<p id="result"></p>
+
+	<script>
+		// Define an array of objects, each representing an animal with its picture and clues
+		var animals = [
+			{
+				name: "lion",
+				picture: "lion2.jpg",
+				clues: ["I am the king of the jungle", "I have a big mane", "I roar loudly"]
+			},
+			{
+				name: "giraffe",
+				picture: "Giraffe2.jpg",
+				clues: ["I have a long neck", "I am the tallest land animal", "I have spots on my coat"]
+			},
+			{
+				name: "penguin",
+				picture: "penguin2.jpg",
+				clues: ["I cannot fly", "I waddle when I walk", "I live in Antarctica"]
+			}
+		];
+
+		var animal, guessCounter = 0;
+
+		 // Function to select a random animal from the array and display its picture and clues
+		function displayAnimal() {
+			animal = animals[Math.floor(Math.random() * animals.length)];
+			document.getElementById("animal-pic").src = animal.picture;
+			document.getElementById("clues").innerHTML = "Clues: " + animal.clues.join(", ");
+		}
+
+		displayAnimal();
+
+		// Function to check the player's guess
+		function checkGuess() {
+			var guess = document.getElementById("guess").value.toLowerCase();
+			if (guess === animal.name) {
+				document.getElementById("result").innerHTML = "Correct! The animal is a " + animal.name + ".";
+				guessCounter++;
+				if (guessCounter >= animals.length) {
+					guessCounter = 0;
+				}
+				displayAnimal();
+			} else {
+				document.getElementById("result").innerHTML = "Incorrect. Try again.";
+			}
+		}
+	</script>
+</body>
+</html>

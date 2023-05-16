@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zoo Ticket Calculator</title>
+    <style>
+        body {
+          background-color: green;
+          color: white;
+          font-family: Arial, sans-serif;
+        }
+        table {
+          border-collapse: collapse;
+          margin: 20px 0;
+        }
+        th, td {
+          padding: 10px;
+          text-align: left;
+          border-bottom: 1px solid white;
+        }
+        th {
+          background-color: #008080;
+        }
+        tr:nth-child(even) {
+          background-color: #006666;
+        }
+        form {
+          margin-top: 20px;
+        }
+        label {
+          display: inline-block;
+          margin-bottom: 10px;
+        }
+        input[type=number] {
+          padding: 5px;
+          font-size: 16px;
+        }
+        button {
+          padding: 10px;
+          background-color: #008080;
+          color: white;
+          font-size: 16px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        button:hover {
+          background-color: #006666;
+        }
+        h1, h2 {
+          text-align: center;
+        }
+        #total-cost {
+          font-weight: bold;
+          font-size: 20px;
+        }
+      </style>
+  </head>
+  <body>
+    <h2>Price Table:</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Age Group</th>
+          <th>Ticket Price</th>
+          <th>Discount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Less than 12 years old</td>
+          <td>Free</td>
+          <td>N/A</td>
+        </tr>
+        <tr>
+          <td>Between 13 and 18 years old</td>
+          <td>5.00 OR</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <td>Between 19 and 59 years old</td>
+          <td>10.00 OR</td>
+          <td>N/A</td>
+        </tr>
+        <tr>
+          <td>Greater than 60 years old</td>
+          <td>5.00 OR</td>
+          <td>40%</td>
+        </tr>
+      </tbody>
+    </table>
+    <h1>Zoo Ticket Calculator</h1>
+    <form>
+      <label for="age-group-1">Number of visitors less than 12 years old:</label>
+      <input type="number" id="age-group-1" name="age-group-1"><br><br>
+      <label for="age-group-2">Number of visitors between 13 and 18 years old:</label>
+      <input type="number" id="age-group-2" name="age-group-2"><br><br>
+      <label for="age-group-3">Number of visitors between 19 and 59 years old:</label>
+      <input type="number" id="age-group-3" name="age-group-3"><br><br>
+      <label for="age-group-4">Number of visitors greater than 60 years old:</label>
+      <input type="number" id="age-group-4" name="age-group-4"><br><br>
+      <button type="button" onclick="calculateTotal()">Calculate Total Cost</button>
+    </form>
+    <h2>Total Cost: <span id="total-cost"></span>OR</h2>
+    <script>
+        function calculateTotal() {
+          var ageGroup1 = document.getElementById("age-group-1").value;
+          var ageGroup2 = document.getElementById("age-group-2").value;
+          var ageGroup3 = document.getElementById("age-group-3").value;
+          var ageGroup4 = document.getElementById("age-group-4").value;
+      
+          var cost = 0;
+      
+          // calculate cost for age group 1 (less than 12 years old)
+          // they get in for free
+          // so no cost added
+      
+          // calculate cost for age group 2 (between 13 and 18 years old)
+          // they get 30% discount
+          cost += (ageGroup2 * 5) * 0.7;
+      
+          // calculate cost for age group 3 (between 19 and 59 years old)
+          // they pay full price
+          cost += ageGroup3 * 10;
+      
+          // calculate cost for age group 4 (greater than 60 years old)
+          // they get 40% discount
+          cost += (ageGroup4 * 5) * 0.6;
+      
+          // display the total cost on the page
+          document.getElementById("total-cost").innerHTML = cost.toFixed(2);
+        }
+      </script>
+       </body>
+       </html>      

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Animal Information</title>
+</head>
+<body style="background-color: mediumseagreen;">
+  <table id="animalTable">
+    <thead>
+      <tr>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      </tr>
+      <tr>
+      </tr>
+      <tr>
+      </tr>
+      <tr>
+      </tr>
+    </tbody>
+  </table>
+
+  <form id="addAnimalForm" action="addAnimal.php" method="post">
+    <label for="animalName">Animal:</label>
+    <input type="text" id="animalName" name="animalName" required>
+    <br>
+    <label for="species">Species:</label>
+    <input type="text" id="species" name="species" required>
+    <br>
+    <label for="habitat">Habitat:</label>
+    <input type="text" id="habitat" name="habitat" required>
+    <br>
+    <label for="diet">Diet:</label>
+    <input type="text" id="diet" name="diet" required>
+    <br>
+    <label for="image">Image:</label>
+    <input type="text" id="image" name="image" required>
+    <br>
+    <input type="submit" value="Add Animal">
+  </form>
+
+  <form id="searchAnimalForm">
+    <label for="searchTerm">Search for:</label>
+    <input type="text" id="searchTerm" name="searchTerm" required>
+    <br>
+    <input type="submit" value="Search">
+  </form>
+
+  <script>
+    // Define animal object type
+    function Animal(animalName, species, habitat, diet, image) {
+      this.animalName = animalName;
+      this.species = species;
+      this.habitat = habitat;
+      this.diet = diet;
+      this.image = image;
+    }
+  
+    // Initialize animal array with existing data
+    var animalArray = [
+      new Animal("Lion", "Panthera leo", "Savanna", "Meat", "lion.jpg"),
+      new Animal("Elephant", "Loxodonta africana", "Grasslands and forests", "Herbivore", "elephant.jpg"),
+      new Animal("Giraffe", "Giraffa camelopardalis", "Savanna", "Herbivore", "giraffe.jpg"),
+      new Animal("Monkey", "Various", "Tropical forests", "Various", "monkey.jpg")
+    ];
+  
+    // Function to add an animal to the array and update the table
+    function addAnimal(event) {
+      event.preventDefault(); // Prevent form submission from reloading the page
+      var form = event.target;
+      var animalName = form.animalName.value;
+      var species = form.species.value;
+      var habitat = form.habitat.value;
+      var diet = form.diet.value;
+      var image = form.image.value;
+      var newAnimal = new Animal(animalName, species, habitat, diet, image);
+      animalArray.push(newAnimal);
+      updateTable(animalArray);
+      form.reset(); // Clear the form
+    }
+  
+    // Function to search for an animal in the array
+    function searchAnimal(event) {
+      event.preventDefault(); // Prevent form submission from reloading the page
+      var searchTerm = event.target.searchTerm.value.toLowerCase();
+      var searchResults = animalArray.filter(function(animal) {
+        return (
+          animal.animalName.toLowerCase().includes(searchTerm) ||
+          animal.species.toLowerCase().includes(searchTerm) ||
+          animal.habitat.toLowerCase().includes(searchTerm) ||
+          animal.diet.toLowerCase().includes(searchTerm)
+        );
+      });
+      updateTable(searchResults);
+    }
+  
+    // Function to update the animal table with the current array data
+    function updateTable(animalArray) {
+      var tableBody = document.querySelector('#animalTable tbody');
+      tableBody.innerHTML = '';
+      animalArray.forEach(function(animal) {
+        var row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${animal.animalName}</td>
+          <td>${animal.species}</td>
+          <td>${animal.habitat}</td>
+          <td>${animal.diet}</td>
+          <td><img src="${animal.image}" alt="${animal.animalName}"></td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+  
+    // Add event listeners to the add and search forms
+    var addAnimalForm = document.querySelector('#addAnimalForm');
+    addAnimalForm.addEventListener('submit', addAnimal);
+  
+    var searchAnimalForm = document.querySelector('#searchAnimalForm');
+    searchAnimalForm.addEventListener('submit', searchAnimal);
+  
+    // Update the table with the initial array data
+    updateTable(animalArray);
+  </script>
+</body>
+</html>  
